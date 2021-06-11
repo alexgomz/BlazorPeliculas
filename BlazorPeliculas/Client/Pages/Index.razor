@@ -1,31 +1,32 @@
 ﻿@page "/"
 
-
-
-<p>Hola, @UtilidadesString.Enmayuscular(nombre)</p>
-
-<p>Vamos a sumar 2 + 2 = @(2 + 2)</p>
-
-<button @onclick="@(() => Console.WriteLine("Detectado Click"))">Presioname</button>
+<div>
+    <h3>Peliculas</h3>
+    <ListadoPeliculas Peliculas="ObtenerPeliculas()" />
+</div>
 
 <div>
-    <h3>Pelicula</h3>
-    <p>Titulo: <b>@SpiderMan.Titulo</b></p>
-    <p>Lanzamiento: <b>@SpiderMan.Lanzamiento.ToString("dd MM yyyy")</b></p>
+    <h2>Crear Pelicula</h2>
+
+    <EjemploTextbox placeholder="Nombre Pelicula" />
 </div>
 
 @code {
     string nombre = "Alejandro";
 
-    public Pelicula SpiderMan { get { return ObtenerPelicula(); } }
 
-    private Pelicula ObtenerPelicula()
+    private List<Pelicula> ObtenerPeliculas()
     {
-        return new Pelicula()
-        {
-            Titulo = "Spider-Man: Far From Home",
-            Lanzamiento = new DateTime(2019, 7, 2)
-        };
+        return new List<Pelicula>()
+            {
+                new Pelicula() {Titulo="Spider-Man: Far From Home", Lanzamiento= new DateTime(2019,7,2)},
+                new Pelicula() {Titulo="Moana", Lanzamiento=new DateTime(2016,11,23)},
+                new Pelicula() {Titulo="Inception", Lanzamiento=new DateTime(2010,7,16)}
+            };
     }
+
+
+
+
 
 }

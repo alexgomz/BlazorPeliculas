@@ -1,0 +1,20 @@
+﻿
+    @if (Peliculas == null)
+    {
+        <text>Cargando...</text>
+    }
+    else
+    {
+        @foreach (var pelicula in Peliculas)
+        {
+            <PeliculaIndividual Pelicula="pelicula"/>
+        }
+    }
+
+
+@code {
+
+    [Parameter] public List<Pelicula> Peliculas { get; set; }
+
+
+}
