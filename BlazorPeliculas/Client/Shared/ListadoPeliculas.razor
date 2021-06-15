@@ -1,20 +1,30 @@
 ﻿
-    @if (Peliculas == null)
-    {
-        <text>Cargando...</text>
-    }
-    else
-    {
-        @foreach (var pelicula in Peliculas)
-        {
-            <PeliculaIndividual Pelicula="pelicula"/>
-        }
-    }
+
+<input type="checkbox" @bind="MostrarBotones" />
+
+<ListadoGenerico Listado="Peliculas">
+    <HayRegistros>
+        <PeliculaIndividual Pelicula="context" MostrarBotones="MostrarBotones" EliminarPelicula="EliminarPelicula" />
+    </HayRegistros>
+</ListadoGenerico>
+
+
 
 
 @code {
 
     [Parameter] public List<Pelicula> Peliculas { get; set; }
+
+
+    bool MostrarBotones = false;
+
+    void EliminarPelicula(Pelicula pelicula)
+    {
+        Peliculas.Remove(pelicula);
+        Console.WriteLine($"Se ha eliminado la pelicula {pelicula.Titulo}");
+    }
+
+
 
 
 }

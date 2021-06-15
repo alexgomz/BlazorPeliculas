@@ -1,28 +1,22 @@
 ﻿@page "/"
+@inject IRepositorio repositorio
 
 <div>
     <h3>Peliculas</h3>
-    <ListadoPeliculas Peliculas="ObtenerPeliculas()" />
+    <ListadoPeliculas Peliculas="Peliculas"/>
+
 </div>
 
-<div>
-    <h2>Crear Pelicula</h2>
 
-    <EjemploTextbox placeholder="Nombre Pelicula" />
-</div>
 
 @code {
     string nombre = "Alejandro";
 
+    private List<Pelicula> Peliculas;
 
-    private List<Pelicula> ObtenerPeliculas()
+    protected override void OnInitialized()
     {
-        return new List<Pelicula>()
-            {
-                new Pelicula() {Titulo="Spider-Man: Far From Home", Lanzamiento= new DateTime(2019,7,2)},
-                new Pelicula() {Titulo="Moana", Lanzamiento=new DateTime(2016,11,23)},
-                new Pelicula() {Titulo="Inception", Lanzamiento=new DateTime(2010,7,16)}
-            };
+        Peliculas = repositorio.ObetenerPeliculas();
     }
 
 
